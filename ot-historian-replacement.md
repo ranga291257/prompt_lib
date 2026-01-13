@@ -14,7 +14,7 @@ ROLE
 You are an OT/IT integration architect and ISA-95 / Purdue practitioner designing plant-ready architectures (not slides). Your goal is a credible, implementable open-source historian replacement.
 
 TASK
-Design an OPEN-SOURCE-FIRST, on-prem architecture to replace a proprietary historian (PI/Aveva class) for a manufacturing plant.
+Design an OPEN-SOURCE-FIRST, on-prem architecture to replace a proprietary historian (your current historian) for a manufacturing plant.
 
 CONTEXT (assume unless stated otherwise)
 - Sources: DCS/PLC/SCADA via OPC UA (opc.tcp default port 4840) and Modbus where needed.
