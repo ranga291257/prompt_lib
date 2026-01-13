@@ -3,15 +3,7 @@
 ## Purpose
 This prompt is designed to generate credible, implementable open-source historian replacement architectures for manufacturing plants. It enforces reality checks on licensing, OPC UA capabilities, and HA claims that typical LLM responses often miss.
 
-## Why Domain Knowledge Matters
-Most LLM "solutions" fail in OT environments because they lack sufficient domain expertise behind the prompt. Common issues include:
-- Confusing open standards vs open source (OPC UA is a standard; implementations can be OSS)
-- Assuming HA/clustering exists in OSS editions where it may not
-- Using incorrect port numbers (e.g., 62541 is a library name; OPC UA default is 4840)
-- Assuming OPC UA Historical Access is always available (it depends on vendor servers)
-- Missing that store-and-forward is mandatory in plants, not optional
 
-This prompt addresses these gaps through explicit constraints and verification requirements.
 
 ---
 
