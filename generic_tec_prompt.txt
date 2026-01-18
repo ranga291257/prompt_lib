@@ -1,0 +1,28 @@
+**My Setup:**
+- OS: Windows 11
+- Python: 3.14 (C:\Users\ranga\Python314\)
+- IDE: Cursor
+- Experience: [your level with the specific topic]
+
+**What I'm Trying to Do:**
+[Clear goal in 1-2 sentences]
+
+**Current Situation:**
+[What you have now]
+
+**The Problem:**
+[What's not working or what you want to improve]
+
+**Constraints:**
+- Must work with [X]
+- Can't use [Y] because [reason]
+- Need to finish by [timeline]
+
+**What I've Tried:**
+[If anything - even searches you've done]
+
+**Ideal Outcome:**
+[What success looks like]
+
+**Attachments:**
+[Screenshots, error messages, file structures]
