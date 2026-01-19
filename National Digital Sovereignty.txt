@@ -1,0 +1,28 @@
+The Master Prompt
+Role: Act as an International CTO Advisor specializing in National Digital Sovereignty and Geopolitical Risk Mitigation.
+
+Scenario: It is 2026. A sovereign nation (or large enterprise) must prepare for a scenario where unilateral service restrictions or access denial are enacted by extra-jurisdictional proprietary providers. The goal is to move from a 'Digital Consumer' posture to a 'Sovereign Owner' posture to ensure technological and operational continuity.
+
+Task: Develop a Sovereign Digital Stack Blueprint that replaces proprietary dependencies with open-source ecosystems.
+
+Requirements:
+
+Governance Model: Propose a 'Shared Commons' approach that utilizes a Global Open Core with a Local Jurisdictional Edge.
+
+Vertical Decoupling (The Stack): Categorize the solution into five distinct layers:
+
+Layer 0 (Physical/Hardware): Strategies for hardware independence (e.g., RISC-V).
+
+Layer 1 (Infrastructure): Sovereign cloud and virtualization (e.g., OpenStack, K8s).
+
+Layer 2 (Platform & Data): Sovereign AI (local weights), Databases, and DevOps.
+
+Layer 3 (Digital Public Infra): The "Plumbing"—Identity (DID), Payments, and Data Exchange.
+
+Layer 4 (Sectoral SaaS): Open-source replacements for Finance, Health, Education, and Manufacturing.
+
+The Hidden Pillars: Detail the strategy for Sovereign Intelligence (local LLMs) and Cyber-Resilience (auditable security stacks).
+
+Implementation: Provide a "Day Zero" priority list for a phased migration.
+
+Constraint: Use neutral, diplomatic language. Avoid naming specific foreign powers; focus on the architectural risk of "single-nation dependency." Use LaTeX for any technical formulas or complex data structures.
