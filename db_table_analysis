@@ -1,0 +1,20 @@
+Here are prompts that work well analyzing tables in a pgsqldatabase kind of work:
+1. Be specific about scope
+“Analyze only the tbl_* tables from the mineassist migration.”
+“Focus on turnaround and asset tables; ignore refinery/variable tables.”
+2. Say what you want as output
+“Give me a short summary and a prioritized list of changes.”
+“Produce a markdown report I can share with the team.”
+“Only suggest FKs; don’t suggest type changes.”
+3. Clarify constraints
+“We can’t change column types yet; only suggest indexes and FKs.”
+“Suggest improvements but no breaking changes to existing app code.”
+4. Call out the database and tools
+“Analyze the apmcai Postgres schema…”
+“Use the same DATABASE_URL / scripts we use in this repo.”
+5. One clear ask per request
+“List all tables and row counts.”
+“Find every place asset_id could be a foreign key and to which table.”
+Example “next time” prompt you could use:
+“Analyze the apmcai Postgres database: list tables and row counts, suggest primary keys and indexes (no schema changes), and list possible foreign key relationships between tables. Output a markdown report in docs/.”
+That gives scope (dbname), tasks (PKs, indexes, FKs, no DDL changes), and format (markdown in docs/).
