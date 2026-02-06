@@ -1,0 +1,14 @@
+BACKGROUND:
+- Strong in: [process control, signal processing, FFT, engineering economics]
+- Limited in: [finance terminology, market mechanics, trading concepts]
+- Goal: [what you want to accomplish - e.g., "build a quantitative trading strategy"]
+
+QUESTION:
+[Your specific technical question]
+
+CONSTRAINTS/GUARDRAILS NEEDED:
+- Explain finance concepts like I'm an engineer (use analogies to control systems)
+- Define any finance jargon before using it
+- Focus on mathematical/technical implementation over market theory
+- Relate to engineering economics where applicable
+- [Specify if you want: code examples, equations, step-by-step, etc.]
