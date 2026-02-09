@@ -1,0 +1,144 @@
+## Final prompt for process industries (copy/paste)
+
+> You are an industrial ERP/EAM asset architect for **process industries** (continuous + batch plants).
+> I need a **scalable asset hierarchy** that supports:
+>
+> * work orders, notifications, PM plans, job plans
+> * maintenance history and failure analysis (reliability)
+> * criticality ranking, safety/environment flags, compliance tracking
+> * spare parts/materials linkage
+> * cost roll-up by site/area/unit/system and also by cost center
+> * **clear separation between fixed installation locations (“where it is”) and replaceable/movable maintainable items (“what it is”)** so history is not lost when equipment is replaced.
+>
+> My current draft is: **Enterprise → Location → Plant → Unit → Subunit → Equipment**.
+> Improve this into a **best-practice process plant model** that avoids mixing geography, org/finance, and physical maintenance structure.
+>
+> **Context (assume typical process plant unless I override):**
+>
+> * Assets include: rotating equipment (pumps/compressors), static equipment (vessels/columns/exchangers), packaged skids, piping systems, instruments/valves, electrical assets, utilities/offsites.
+> * Some equipment gets replaced/swapped; locations are fixed.
+> * There may be parallel trains and common utilities.
+>
+> **Deliverables (use this exact structure):**
+>
+> 1. **Recommended backbone hierarchy** for the physical/maintenance view
+>
+>    * list each level (e.g., enterprise/site/plant/area/unit/system/location/equipment/component)
+>    * give a simple definition of each level and when to use it
+> 2. **Org/finance structure vs physical structure**
+>
+>    * propose a clean way to represent cost centers/ownership without adding messy hierarchy levels
+> 3. **Rules for “Location/Slot” vs “Maintainable Equipment”**
+>
+>    * how replacement works (history retention)
+>    * how movement works (equipment history follows the item)
+>    * how packages/skids are handled
+> 4. **Naming + ID conventions**
+>
+>    * code pattern (stable, sortable, short)
+>    * examples for: (a) a pump, (b) an exchanger, (c) a control valve or instrument loop, (d) a packaged compressor skid
+> 5. **Minimum data fields** (must-have) per level
+>
+>    * include: criticality, discipline, safety flag, status, install date, manufacturer/model/serial (where relevant), cost center link
+> 6. **Common pitfalls** in process industries and how your design prevents them
+> 7. **Worked example**
+>
+>    * show one complete chain from enterprise → … → location → equipment → components for a realistic process area asset.
+>
+> **Acceptance tests (your design must satisfy):**
+>
+> * If a pump is replaced, I keep the failure and work history tied to the **installation location**.
+> * If a spare pump is moved to another location, its OEM/repair history stays with the **equipment item**.
+> * I can report cost and downtime by **site / plant / area / unit / system** *and* by **cost center** without duplicating hierarchy levels.
+> * The model supports process units *and* utilities/offsites cleanly.
+> * The naming scheme stays stable even if service names change.
+>
+> Keep it practical and implementation-ready. Avoid vendor-specific terms.
+****************************************************************************************************************************
+
+Here’s a **SAGD-specific v1 standard prompt** you can copy/paste. It’s tailored to **2 CPFs, 10 wellpads, 8 well pairs per pad**,
+and it forces a clean hierarchy that works for maintenance + reliability + cost rollups, without vendor terms.
+
+---
+
+## SAGD asset hierarchy prompt (v1 standard)
+
+> You are an industrial ERP/EAM asset architect specializing in **SAGD facilities**.
+> Design a **scalable asset hierarchy** and naming standard for a SAGD operation with:
+>
+> * **2 Central Processing Facilities (CPF-1, CPF-2)**
+> * **10 wellpads (WP-01 … WP-10)**
+> * Each wellpad has **8 well pairs** (injector + producer) = **WP-xx / Pair 01..08**
+>
+> The hierarchy must support:
+>
+> * work orders, PM plans, job plans, notifications
+> * maintenance & failure history, reliability analysis, criticality
+> * cost rollups by site/CPF/wellpad/unit/system and also by cost center
+> * spares/material linkage
+> * **clear separation between fixed installation locations (“where it is installed”) and replaceable equipment (“the maintainable item”)** so history is not lost when equipment is replaced/swapped
+> * support for both **CPF process units** and **field/pad assets** (wells, pipelines, pad utilities, instruments, power, communications)
+>
+> **Important SAGD modeling needs:**
+>
+> * Represent **wellpairs** as a structured set (Injector + Producer) with shared pad infrastructure
+> * Include flow paths: wellpair → pad production gathering → trunkline → CPF inlet → separation/treating → export/disposal
+> * Support packaged skids (chemical injection, metering skids, instrument air packages, etc.)
+> * Allow parallel trains in the CPF (if present) without breaking reporting
+>
+> **Deliverables (use this exact structure):**
+>
+> 1. **Recommended backbone hierarchy** for the *physical/maintenance view*
+>
+>    * Define each level and when to use it (e.g., enterprise → site → facility → area → unit → system → location/slot → equipment → component)
+>    * Show how you represent: CPF-1, CPF-2, wellpads, wellpairs, wells, trunklines, and pipelines
+> 2. **Org/finance vs physical structure**
+>
+>    * Propose how cost centers/ownership are linked without adding messy hierarchy levels
+> 3. **Rules for Location/Slot vs Equipment**
+>
+>    * Replacement rules (location keeps history; equipment item carries its own history)
+>    * Movement rules (how swapped pumps/valves/meters are treated)
+>    * Rules for skids/packages and rented/temporary equipment
+> 4. **Naming + ID convention (stable, sortable, short codes)**
+>
+>    * Provide a code pattern for each level
+>    * Provide examples for these SAGD items:
+>      a) A **wellpair** (Injector + Producer) and each well’s key equipment
+>      b) A **pad production header / manifold** and **test separator** (if any)
+>      c) A **trunkline / gathering pipeline segment** from WP-03 to CPF-1
+>      d) A **CPF inlet separator** and a **produced water pump**
+>      e) A **control valve** and a **flowmeter** (instrument assets)
+> 5. **Minimum master data fields** per level (must-have)
+>
+>    * include: criticality, discipline, safety/environment flag, status, install date, manufacturer/model/serial (where relevant), parent links, cost center link
+> 6. **Common SAGD pitfalls** and how your design prevents them
+>
+>    * examples: mixing geography with process hierarchy, inconsistent pad naming, not separating wells vs pad infrastructure, losing history on replacements, pipeline segmentation problems
+> 7. **Worked example**
+>
+>    * Show one full chain from enterprise → site → CPF/wellpad → … → location → equipment → components
+>    * Use **WP-03 Pair-05** and include at least: the producer well, pad manifold, a chemical injection pump, the gathering line segment, and the CPF inlet equipment.
+>
+> **Acceptance tests (must satisfy):**
+>
+> * If a pump at WP-03 is replaced, the **pad location** retains failure/work history.
+> * If a spare pump is moved from WP-01 to WP-03, the **equipment item history** moves with it.
+> * I can report downtime/cost by **CPF**, by **wellpad**, by **wellpair**, and by **system**.
+> * Pipelines can be tracked in a way that supports inspection and maintenance history by segment.
+> * The naming scheme stays stable if service names or operating modes change.
+>
+> Keep it practical and implementation-ready. Avoid vendor-specific terms.
+
+---
+
+### Optional add-on (only if you want tighter output)
+
+Add this line at the end if you want it even more “ERP-ready”:
+
+> Also output a small table mapping each asset type to: `level`, `is_location_slot?`, `is_equipment?`, `typical PM owner discipline`, and `typical criticality method`.
+
+---
+
+If you want, I can also give you a **ready-made SAGD hierarchy template** (a concrete tree with sample IDs for CPF-1/CPF-2, WP-01..10, Pair-01..08) that you can paste straight into your ERP/EAM master data build sheet.
+
